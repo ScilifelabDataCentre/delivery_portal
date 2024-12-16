@@ -469,4 +469,3 @@ _Nothing merged during this sprint_
 - Modify the monitor usage command to send warning to the affected unit as well as Data Centre([#1562](https://github.com/ScilifelabDataCentre/dds_web/pull/1562))
 - Run npm audit fix to solve node cve's ([#1577](https://github.com/ScilifelabDataCentre/dds_web/pull/1577)
 - Change quota input to TB ([#1575](https://github.com/ScilifelabDataCentre/dds_web/pull/1579))
-
