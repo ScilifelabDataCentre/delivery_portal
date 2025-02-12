@@ -18,6 +18,8 @@ import flask
 import flask_mail
 import sqlalchemy
 import botocore
+from redis import Redis
+from rq import Worker
 
 # Own
 from dds_web import db
@@ -1319,3 +1321,25 @@ def monitor_usage():
                 body=message,
             )
             dds_web.utils.send_email_with_retry(msg=msg)
+
+
+@click.command("run-redis-worker")
+@flask.cli.with_appcontext
+def run_redis_worker():
+    """
+    This function initializes a worker that connects to a Redis server using the
+    URL specified in the Flask application's configuration. The worker listens to
+    the "default" queue and processes jobs from it.
+
+    Configuration:
+        - The Redis server URL should be specified in the Flask application's
+        configuration under the key "REDIS_URL".
+        - The worker can be further customized, see https://python-rq.org/docs/workers/
+    """
+
+    redis_url = flask.current_app.config.get("REDIS_URL")
+    redis_connection = Redis.from_url(redis_url)
+    worker = Worker(
+        ["default"], connection=redis_connection, name="redis-queue"
+    )  # if no name, it wil be random
+    worker.work()
