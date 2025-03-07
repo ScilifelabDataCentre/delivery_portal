@@ -478,3 +478,7 @@ _Nothing merged during this sprint_
 
 - Make release template ([#1587](https://github.com/ScilifelabDataCentre/dds_web/pull/1587))
 - Fix codecov action ([#1589](https://github.com/ScilifelabDataCentre/dds_web/pull/1589))
+
+# 2024-02-03 - 2025-02-14
+
+- Implementation of a Redis Queue to process aynschronus some requests and avoid timeouts, and enque the function to delete all the contents of a project([#1591](https://github.com/ScilifelabDataCentre/dds_web/pull/1591))
